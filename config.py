@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     SIM_PLANT_ID: str = "sim-plant-001"
     SIM_INVERTERS: int = 2
     SIM_STRINGS_PER_INVERTER: int = 20
-    SIM_INTERVAL: int = 5  # seconds between live state updates
+    SIM_INTERVAL: int = 600  # seconds between live state updates (10-min step)
     SIM_SCENARIO: str = "healthy"  # healthy | degraded_string | disconnected_string | offline_inverter
 
     # Historical dataset generation (development only). The simulator produces
