@@ -59,3 +59,59 @@ class PlantResponse(BaseModel):
 
 class ErrorResponse(BaseModel):
     detail: str
+
+
+class HistoryStringPoint(BaseModel):
+    """One timestamped string measurement in the historical dataset."""
+
+    timestamp: datetime
+    string_id: str
+    inverter_id: str
+    current_a: float
+    voltage_v: float
+    power_w: float
+    status: str
+    irradiance_w_m2: float
+    ambient_temp_c: float
+    panel_temp_c: float
+
+
+class HistoryWeatherPoint(BaseModel):
+    """One timestamped plant weather sample."""
+
+    timestamp: datetime
+    irradiance_w_m2: float
+    ambient_temp_c: float
+    panel_temp_c: float
+    power_kw: float
+    energy_today_kwh: float
+
+
+class HistoryResponse(BaseModel):
+    plant_id: str
+    start: datetime
+    end: datetime
+    interval_minutes: int
+    count: int
+    data: List[HistoryStringPoint]
+
+
+class HistoryWeatherResponse(BaseModel):
+    plant_id: str
+    start: datetime
+    end: datetime
+    count: int
+    data: List[HistoryWeatherPoint]
+
+
+class AnomalyEventResponse(BaseModel):
+    kind: str
+    entity: str
+    start: datetime
+    end: datetime
+    description: str
+
+
+class AnomalyLogResponse(BaseModel):
+    plant_id: str
+    anomalies: List[AnomalyEventResponse]
